@@ -1,0 +1,98 @@
+### model
+model_name_or_path: /data2/lxy/download/ZhipuAI/glm-4-9b-chat
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_target: all
+lora_rank: 32
+lora_alpha: 64
+# additional_target: lm_head, input_layernorm, post_attention_layernorm, norm
+
+### dataset
+dataset: ppdai
+template: glm4
+cutoff_len: 1024
+# max_samples: 1000
+overwrite_cache: true
+preprocessing_num_workers: 16
+
+### output
+output_dir: /data2/lxy/finetune/sft/glm4_llm_ppdai_0818_v0
+logging_steps: 10
+save_steps: 100
+plot_loss: true
+overwrite_output_dir: true
+
+# ### train
+# per_device_train_batch_size: 4
+# gradient_accumulation_steps: 4
+# learning_rate: 1.0e-4
+# num_train_epochs: 5.0
+# lr_scheduler_type: cosine
+# warmup_ratio: 0.1
+# fp16: true
+# ddp_timeout: 180000000
+### train
+per_device_train_batch_size: 8
+gradient_accumulation_steps: 4  # 减少 accumulation steps
+learning_rate: 1.0e-5  # 降低学习率
+num_train_epochs: 2.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+fp16: true
+# fp16_opt_level: O2  # or O1
+ddp_timeout: 180000000
+# max_grad_norm: 0.5  # 添加梯度裁剪
+
+
+### eval
+val_size: 0.1
+per_device_eval_batch_size: 8
+eval_strategy: steps
+eval_steps: 100
+# CUDA_VISIBLE_DEVICES=2 llamafactory-cli train examples/train_lora/glm4_llm.yaml
+
+# ### model
+# model_name_or_path: /data2/lxy/download/ZhipuAI/glm-4-9b-chat
+
+# ### method
+# stage: sft
+# do_train: true
+# finetuning_type: lora
+# lora_target: all
+# lora_rank: 64
+# lora_alpha: 128
+# deepspeed: examples/deepspeed/ds_z3_config.json
+
+# ### dataset
+# dataset: llm_backup
+# template: glm4
+# cutoff_len: 1024
+# max_samples: 1000
+# overwrite_cache: true
+# preprocessing_num_workers: 16
+
+# ### output
+# output_dir: data2/lxy/finetune/sft/glm4_llm_backup_0802
+# logging_steps: 10
+# save_steps: 10
+# plot_loss: true
+# overwrite_output_dir: true
+
+# ### train
+# per_device_train_batch_size: 4
+# gradient_accumulation_steps: 8
+# learning_rate: 1.0e-4
+# num_train_epochs: 10.0
+# lr_scheduler_type: cosine
+# warmup_ratio: 0.1
+# fp16: true
+# ddp_timeout: 180000000
+
+# ### eval
+# val_size: 0.1
+# per_device_eval_batch_size: 4
+# eval_strategy: steps
+# eval_steps: 500
