@@ -11,10 +11,10 @@ lora_target: q_proj,v_proj
 ddp_timeout: 180000000
 
 # dataset
-dataset: test_sft
+dataset: ppdai
 template: qwen
 cutoff_len: 1024
-max_samples: 500000
+max_samples: 500
 val_size: 0.1
 overwrite_cache: true
 preprocessing_num_workers: 16
@@ -27,10 +27,10 @@ plot_loss: true
 overwrite_output_dir: true
 
 # train
-per_device_train_batch_size: 24
-gradient_accumulation_steps: 2
+per_device_train_batch_size: 8
+gradient_accumulation_steps: 4
 learning_rate: 0.0005
-num_train_epochs: 20.0
+num_train_epochs: 2.0
 lr_scheduler_type: cosine
 # warmup_steps: 0.1
 fp16: true
@@ -41,4 +41,4 @@ lora_dropout: 0.05
 # eval
 per_device_eval_batch_size: 9
 evaluation_strategy: steps
-eval_steps: 500
+eval_steps: 100

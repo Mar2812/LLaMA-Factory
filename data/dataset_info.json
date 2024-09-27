@@ -17,6 +17,26 @@
   "alpaca_zh_demo": {
     "file_name": "alpaca_zh_demo.json"
   },
+  "ppdai": {
+    "file_name": "/data2/lxy/rlhf_data/sft/ppdai_train.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "system": "system",
+      "history": "history"
+    }  
+  },
+  "ppdai_rlhf": {
+    "file_name": "/data2/lxy/rlhf_data/results_train_v2/ppdai_rlhf.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "columns": {
+      "messages": "conversation",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
   "glaive_toolcall_en_demo": {
     "file_name": "glaive_toolcall_en_demo.json",
     "formatting": "sharegpt",

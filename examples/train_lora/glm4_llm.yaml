@@ -19,7 +19,7 @@ overwrite_cache: true
 preprocessing_num_workers: 16
 
 ### output
-output_dir: /data2/lxy/finetune/sft/glm4_llm_ppdai_0818_v0
+output_dir: /data2/machao/glm4/sft/glm4_llm_ppdai_0927_v1
 logging_steps: 10
 save_steps: 100
 plot_loss: true
